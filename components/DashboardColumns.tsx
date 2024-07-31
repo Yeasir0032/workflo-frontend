@@ -25,7 +25,9 @@ async function reorderServer(
   columnId: number
 ) {
   try {
-    const response = await fetch(`http://localhost:5000/api/task/reorder`, {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+    const response = await fetch(`${backendUrl}/api/task/reorder`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +53,9 @@ async function moveCardServer(
   destinationIndex: number
 ) {
   try {
-    const response = await fetch(`http://localhost:5000/api/task/move`, {
+    const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+    const response = await fetch(`${backendUrl}/api/task/move`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -77,16 +81,14 @@ const DashboardColumns = () => {
     // dispatch(setLoading(true));
     async function fetchData() {
       if (!userLoginId) return;
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
       try {
-        const response = await fetch(
-          `http://localhost:5000/api/task/${userLoginId}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(`${backendUrl}/api/task/${userLoginId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
         if (response.status != 200) throw { message: "error happended" };
         const data = await response.json();
         const allColumn = data.columns;

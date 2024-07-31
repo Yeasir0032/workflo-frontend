@@ -28,9 +28,10 @@ const SignUpPage = () => {
     try {
       const myUser = UserSchema.parse(formData);
       setEM("");
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
       try {
-        const response = await fetch("http://localhost:5000/api/user/signup", {
+        const response = await fetch(`${backendUrl}/api/user/signup`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

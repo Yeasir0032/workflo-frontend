@@ -81,7 +81,9 @@ const Task = (props: taskitemprops) => {
   }
   async function deleteTaskServer() {
     try {
-      const response = await fetch("http://localhost:5000/api/task/delete", {
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+      const response = await fetch(`${backendUrl}/api/task/delete`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

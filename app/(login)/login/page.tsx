@@ -17,12 +17,14 @@ const SignInPage = () => {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+
   const handleSubmit = async (e: SyntheticEvent) => {
     e.preventDefault();
     try {
       const myUser = UserSchema.parse(formData);
+      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-      const response = await fetch("http://localhost:5000/api/user/login", {
+      const response = await fetch(`${backendUrl}/api/user/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

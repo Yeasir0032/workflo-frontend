@@ -43,6 +43,8 @@ const DashboardDrawer = () => {
   const userLoginId = useSelector((state: RootState) => state.userState.userId);
   const dispatch = useDispatch();
 
+  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
+
   //Form data to handle form
   useEffect(() => {
     if (myStatus) {
@@ -85,7 +87,7 @@ const DashboardDrawer = () => {
           deadline: myData.deadline,
           priority: myData.priority,
         };
-        const response = await fetch("http://localhost:5000/api/task/edit", {
+        const response = await fetch(`${backendUrl}/api/task/edit`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -134,7 +136,7 @@ const DashboardDrawer = () => {
         priority: myData.priority,
       };
 
-      const response = await fetch("http://localhost:5000/api/task/new", {
+      const response = await fetch(`${backendUrl}/api/task/new`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
