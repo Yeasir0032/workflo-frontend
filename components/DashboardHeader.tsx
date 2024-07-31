@@ -48,8 +48,8 @@ const DashboardHeader = () => {
               Access Anywhere
             </div>
             <div className=" text-wrap text-zinc-400">
-              Sync your notes across all devices. Stay productive whether you're
-              on your phone, tablet, or computer.
+              Sync your notes across all devices. Stay productive whether
+              you&apos;re on your phone, tablet, or computer.
             </div>
           </div>
         </div>
